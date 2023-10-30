@@ -1,261 +1,482 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Explore the mesmerizing world of fine art with Juliia Ustymenko, a passionate artist and painter from Ukraine. Discover exquisite paintings, murals, and unique art creations."
+    />
+    <meta
+      name="keywords"
+      content="artist, painter, fine art, paintings, murals, art creations, Ukrainian artist, contemporary art"
+    />
+    <meta name="author" content="Juliia Ustymenko" />
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Juliia Ustymenko</title>
-	<link rel="stylesheet" href="css/style.css">
-	<link href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRvJmPbVR8pZl3/Jr3ljd6O8b5Oew+wn3Z6Z5M7U" crossorigin="anonymous"> -->
-	<script src="js/main.js" defer></script>
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juliia Ustymenko</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/media.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <script
+      defer
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    ></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/menu-bar.js"></script>
+    <script defer src="libs/inputmask.min.js"></script>
+    <script defer src="libs/just-validate3.3.3.min.js"></script>
+    <script defer src="js/script-new.js"></script>
+  </head>
 
-<body>
-	<div class="box">
+  <body>
+    <div class="box">
+      <header class="header">
+        <div class="conteiner">
+          <div class="header__inner">
+            <div class="header__icons">
+              <div class="icon__instagram">
+                <a
+                  href="https://www.instagram.com/ustymenkoyuliia.art_yu/"
+                  target="_blank"
+                >
+                  <img src="images/instagram.svg" alt="instagram" />
+                </a>
+              </div>
+              <div class="icon__facebook">
+                <a href="https://www.facebook.com/ustik.sunny" target="_blank">
+                  <img src="images/facebook.svg" alt="facebook" />
+                </a>
+              </div>
+            </div>
+            <a href="#" class="toggle-button">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </a>
+            <nav id="menu" class="header__menu">
+              <ul class="list__menu">
+                <li><a class="menu__li" href="#about">About me</a></li>
+                <li><a class="menu__li" href="#galery__1">Murals</a></li>
+                <li><a class="menu__li" href="#galery__2">Painting</a></li>
+                <li><a class="menu__li" href="#galery__3">Production</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
 
-		<header class="header">
-			<div class="conteiner">
-				<div class="header__inner">
-					<nav id="menu" class="header__menu">
-						<ul>
-							<li><a href="#about">About me</a></li>
-							<li><a href="#galery__1">Murals</a></li>
-							<li><a href="#galery__2">Painting</a></li>
-							<li><a href="#galery__3">Production</a></li>
-						</ul>
-					</nav>
-					<div class="header__icons">
-						<div class="icon__instagram">
-							<a href="https://www.instagram.com/ustymenkoyuliia.art_yu/" target="_blank">
-								<img src="images/instagram.svg" alt="instagram">
-							</a>
-						</div>
-						<div class="icon__facebook">
-							<a href="https://www.facebook.com/ustik.sunny" target="_blank">
-								<img src="images/facebook.svg" alt="facebook">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</header>
+      <main class="main">
+        <section class="first__screen">
+          <div class="conteiner">
+            <div class="title__picture">
+              <h1 class="header__name">Juliia Ustymenko</h1>
+              <div class="header__btn">
+                <a href="#form__feedback">Sign me</a>
+              </div>
+            </div>
+          </div>
+        </section>
 
-		<main class="main">
-			<section class="first__screen">
-				<div class="conteiner">
-					<div class="title__picture">
-						<h1 class="header__name">Juliia Ustymenko</h1>
-						<div class="header__btn"><a href="#">Sign me</a></div>
-					</div>
-				</div>
-			</section>
+        <section id="about" class="about__me">
+          <div class="conteiner">
+            <div class="card__structure">
+              <h2 class="section__title">About me</h2>
+              <div class="about__me__box">
+                <div class="about__me__photo"></div>
+                <div class="about__me__text">
+                  <div>
+                    <p>
+                      Hi! My name is Yulia,<br />
 
-			<section id="about" class="about__me">
-				<div class="conteiner">
-					<div class="about__me__box">
-						<div class="about__me__photo"></div>
-						<div class="about__me__text">
-							<h2 class="section__title">About me</h2>
-							<div>Hi! My name is Yulia,<br />
-								I am a professional artist-designer and painter from Ukraine.<br /><br />
-								I have more than 12 years of experience and I transform spaces with my artistic skills.
-								I know how to select and mix paints, prepare surfaces, apply paints using various
-								techniques.<br /><br />
-								I graduated from the Faculty of Architectural Design in 2011 and since then I have
-								devoted myself completely to the aesthetics of the environment.<br /><br />
-								In my work, I always pay attention to details, color balance and proportions. My
-								experience as a decorator and artist enhances the aesthetics and atmosphere of the
-								environment in which you live.</div>
-						</div>
-					</div>
-				</div>
-			</section>
+                      I am a professional artist-designer and painter from
+                      Ukraine.
+                    </p>
+                    <p>
+                      I have more than 12 years of experience and I transform
+                      spaces with my artistic skills.
+                    </p>
 
-	
+                    <span class="text__plus">
+                      I know how to select and mix paints, prepare surfaces,
+                      apply paints using various techniques.
+                    </span>
 
-			<section id="galery__1" class="murals">
-				<div class="conteiner">
-					<div class="murals__box">
-						<h2 class="section__title">Murals</h2>
-						<div class="murals__text">I painted thousands of murals in Ukraine for restaurants, hotels and private houses. In 2022 I worked for six months in Poland at the company Wakeuptime, where I was a leading artist in painting outdoor advertising on the facades of high-rise buildings
-						</div>
-						<div class="slider__box">
-							<div class="wrapper">
-								<i id="left" class="fa-solid fa-angle-left"></i>
-								<div class="galery__slider">
-									<img src="images/murals/1.jpg" alt="murals" draggable="false">
-									<img src="images/murals/2.jpg" alt="murals" draggable="false">
-									<img src="images/murals/3.jpg" alt="murals" draggable="false">
-									<img src="images/murals/4.jpg" alt="murals" draggable="false">
-									<img src="images/murals/5.jpg" alt="murals" draggable="false">
-									<img src="images/murals/6.jpg" alt="murals" draggable="false">
-									<img src="images/murals/7.jpg" alt="murals" draggable="false">
-								</div>
-								<i id="right" class="fa-solid fa-angle-right"></i>
-							</div>
-						</div>
-						<div class="murals__btn"><a href="#">Sign me</a></div>
-					</div>
-				</div>
-			</section>
+                    <p class="text__plus">
+                      I graduated from the Faculty of Architectural Design in
+                      2011 and since then I have devoted myself completely to
+                      the aesthetics of the environment.
+                    </p>
 
+                    <p>
+                      In my work, I always pay attention to details, color
+                      balance and proportions.
+                    </p>
+                    <p>
+                      My experience as a decorator and artist enhances the
+                      aesthetics and atmosphere of the environment in which you
+                      live.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-			<section id="galery__2" class="painting">
-				<div class="conteiner">
-					<div class="painting__box">
-						<h2 class="section__title">Painting</h2>
-						<div class="painting__text">My great love is painting on canvases. I love mixing styles and textures. I paint portraits, landscapes, abstractions, fantasy. I will never stop at one thing. My experience allows me to feel your special wishes and realize them
-						</div>
-						<div class="slider__box">
-							<div class="wrapper">
-								<i id="left1" class="fa-solid fa-angle-left"></i>
-								<div class="galery__slider2">
-									<img src="images/painting/1.jpg" alt="painting" draggable="false">
-									<img src="images/painting/2.jpg" alt="painting" draggable="false">
-									<img src="images/painting/3.jpg" alt="painting" draggable="false">
-									<img src="images/painting/4.jpg" alt="painting" draggable="false">
-									<img src="images/painting/5.jpg" alt="painting" draggable="false">
-									<img src="images/painting/6.png" alt="painting" draggable="false">
-									<img src="images/painting/7.jpg" alt="painting" draggable="false">
-									<img src="images/painting/8.jpg" alt="painting" draggable="false">
-									<img src="images/painting/9.jpg" alt="painting" draggable="false">
-									<img src="images/painting/10.jpg" alt="painting" draggable="false">
-									<img src="images/painting/11.jpg" alt="painting" draggable="false">
-									<img src="images/painting/12.jpg" alt="painting" draggable="false">
-									<img src="images/painting/13.jpg" alt="painting" draggable="false">
-									<img src="images/painting/14.jpg" alt="painting" draggable="false">
-									<img src="images/painting/15.jpg" alt="painting" draggable="false">
-								</div>
-								<i id="right1" class="fa-solid fa-angle-right"></i>
-							</div>
-						</div>
-						<div class="murals__btn"><a href="#">Sign me</a></div>
-					</div>
-				</div>
-			</section>
+        <section id="galery__1" class="murals">
+          <div class="conteiner">
+            <div class="murals__box">
+              <h2 class="section__title">Murals</h2>
+              <div class="murals__text">
+                I painted thousands of murals in Ukraine for restaurants, hotels
+                and private houses. In 2022 I worked for six months in Poland at
+                the company Wakeuptime, where I was a leading artist in painting
+                outdoor advertising on the facades of high-rise buildings
+              </div>
+              <div class="slider__box">
+                <div class="wrapper">
+                  <i id="left" class="fa-solid fa-angle-left"></i>
+                  <div class="galery__slider">
+                    <img
+                      src="images/murals/1.jpg"
+                      alt="murals"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/murals/2.jpg"
+                      alt="murals"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/murals/3.jpg"
+                      alt="murals"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/murals/4.jpg"
+                      alt="murals"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/murals/5.jpg"
+                      alt="murals"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/murals/6.jpg"
+                      alt="murals"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/murals/7.jpg"
+                      alt="murals"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/murals/8.jpg"
+                      alt="murals"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/murals/9.jpg"
+                      alt="murals"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/murals/10.jpg"
+                      alt="murals"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/murals/11.jpg"
+                      alt="murals"
+                      draggable="false"
+                    />
+                  </div>
+                  <i id="right" class="fa-solid fa-angle-right"></i>
+                </div>
+              </div>
+              <div class="galery__btn">
+                <a href="#form__feedback">Sign me</a>
+              </div>
+            </div>
+          </div>
+        </section>
 
+        <section id="galery__2" class="painting">
+          <div class="conteiner">
+            <div class="painting__box">
+              <h2 class="section__title">Painting</h2>
+              <div class="painting__text">
+                My great love is painting on canvases. I love mixing styles and
+                textures. I paint portraits, landscapes, abstractions, fantasy.
+                I will never stop at one thing. My experience allows me to feel
+                your special wishes and realize them
+              </div>
+              <div class="slider__box">
+                <div class="wrapper">
+                  <i id="left1" class="fa-solid fa-angle-left"></i>
+                  <div class="galery__slider2">
+                    <img
+                      src="images/painting/1.jpg"
+                      alt="painting"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/painting/2.jpg"
+                      alt="painting"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/painting/3.jpg"
+                      alt="painting"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/painting/4.jpg"
+                      alt="painting"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/painting/5.jpg"
+                      alt="painting"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/painting/6.jpg"
+                      alt="painting"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/painting/7.jpg"
+                      alt="painting"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/painting/8.jpg"
+                      alt="painting"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/painting/9.jpg"
+                      alt="painting"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/painting/10.jpg"
+                      alt="painting"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/painting/11.jpg"
+                      alt="painting"
+                      draggable="false"
+                    />
+                  </div>
+                  <i id="right1" class="fa-solid fa-angle-right"></i>
+                </div>
+              </div>
+              <div class="galery__btn">
+                <a href="#form__feedback">Sign me</a>
+              </div>
+            </div>
+          </div>
+        </section>
 
-			<section id="galery__3" class="production">
-				<div class="conteiner">
-					<div class="production__box">
-						<h2 class="section__title">Production</h2>
-						<div class="production__text">I love to create special, unique things. Drawing on clothes is a separate form of art, because you are not working with a flat surface and you have to take into account the characteristics of different materials. I believe that wearing an art object is always fashionable and exciting
-						</div>
-						<div class="slider__box">
-							<div class="wrapper">
-								<i id="left2" class="fa-solid fa-angle-left"></i>
-								<div class="galery__slider3">
-									<img src="images/production/1.jpg" alt="production" draggable="false">
-									<img src="images/production/2.jpg" alt="production" draggable="false">
-									<img src="images/production/3.jpg" alt="production" draggable="false">
-									<img src="images/production/4.jpg" alt="production" draggable="false">
-									<img src="images/production/5.jpg" alt="production" draggable="false">
-									<img src="images/production/6.jpg" alt="production" draggable="false">
-									<img src="images/production/7.jpg" alt="production" draggable="false">
-									<img src="images/production/8.jpg" alt="production" draggable="false">
-									<img src="images/production/9.jpg" alt="production" draggable="false">
-									<img src="images/production/10.jpg" alt="production" draggable="false">
-								</div>
-								<i id="right2" class="fa-solid fa-angle-right"></i>
-							</div>
-						</div>
-						<div class="murals__btn"><a href="#">Sign me</a></div>
-					</div>
-				</div>
-			</section>
+        <section id="galery__3" class="production">
+          <div class="conteiner">
+            <div class="production__box">
+              <h2 class="section__title">Production</h2>
+              <div class="production__text">
+                I love to create special, unique things. Drawing on clothes is a
+                separate form of art, because you are not working with a flat
+                surface and you have to take into account the characteristics of
+                different materials. I believe that wearing an art object is
+                always fashionable and exciting
+              </div>
+              <div class="slider__box">
+                <div class="wrapper">
+                  <i id="left2" class="fa-solid fa-angle-left"></i>
+                  <div class="galery__slider3">
+                    <img
+                      src="images/production/1.jpg"
+                      alt="production"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/production/2.jpg"
+                      alt="production"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/production/3.jpg"
+                      alt="production"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/production/4.jpg"
+                      alt="production"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/production/5.jpg"
+                      alt="production"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/production/6.jpg"
+                      alt="production"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/production/7.jpg"
+                      alt="production"
+                      draggable="false"
+                    />
+                    <img
+                      src="images/production/8.jpg"
+                      alt="production"
+                      draggable="false"
+                    />
+                  </div>
+                  <i id="right2" class="fa-solid fa-angle-right"></i>
+                </div>
+              </div>
+              <div class="galery__btn">
+                <a href="#form__feedback">Sign me</a>
+              </div>
+            </div>
+          </div>
+        </section>
 
-			
-			<section class="why__me">
-				<div class="conteiner">
-					<div class="why__me__box">
-						<div class="why__me__photo"></div>
-						<div class="why__me__text">
-							<h2 class="section__title">Why me?</h2>
-							<div>I have more then 12 years of experience in decorating and painting. My projects are always done at a high level of quality. <br><br>
-								I have created more than 238 sculptural walls and 256 murals, more than 613 paintings on canvas, including 198 portraits, I also painted 58 jackets. 
-							<br><br>	
-								I guarantee the quality, timeliness and uniqueness of your orders. My clients are always satisfied.
-							<br><br>	
-								I can surprise you!</div>
-						</div>
-					</div>
-				</div>
-			</section>
+        <section class="why__me">
+          <div class="conteiner">
+            <div class="card__structure">
+              <h2 class="section__title">Why me?</h2>
+              <div class="why__me__box">
+                <div class="why__me__photo"></div>
+                <div class="why__me__text">
+                  <div>
+                    <p>
+                      I have more then 12 years of experience in decorating and
+                      painting. My projects are always done at a high level of
+                      quality.
+                    </p>
+                    <p>
+                      I have created more than 238 sculptural walls and 256
+                      murals, more than 613 paintings on canvas, including 198
+                      portraits, I also painted 58 jackets.
+                    </p>
 
-			<section class="master__class">
-				<div class="conteiner">
-					<div class="master__class__box">
-						
-						<div class="master__class__text">
-							<h2 class="section__title">Master class</h2>
-							<div>
-								I conducted group master classes and art therapy for 2 years in Ukraine, and that was before the war. <br><br>
-								
-								Today I can offer individual lessons in graphics, drawing, painting, I can share all my experience and decorative skills.
-								Email me to learn more about lessons.
-							</div>						
-						</div>
-						<div class="master__class__photo"></div>
-					</div>
-				</div>
-			</section>
+                    <p>
+                      I guarantee the quality, timeliness and uniqueness of your
+                      orders. My clients are always satisfied.
+                    </p>
 
+                    <p>I can surprise you!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-			<section class="feedback">
-				<div class="conteiner">
-					<div class="feedback__picture__box">
-						<h2 class="section__title">Email me here</h2>
-						<div class="feedback__text">
-							Submit your application and I&#96;ll contact you
-						</div>
-						<form action="mail.php" id="myForm" class="feedback_form">
+        <section class="master__class">
+          <div class="conteiner">
+            <div class="card__structure">
+              <h2 class="section__title">Master class</h2>
+              <div class="master__class__box">
+                <div class="master__class__text">
+                  <div>
+                    <p>
+                      I conducted group master classes and art therapy for 2
+                      years in Ukraine, and that was before the war.
+                    </p>
 
-									<!-- Hidden Required Fields -->
-									<input type="hidden" name="project_name" value="Site Name">
-									<input type="hidden" name="admin_email" value="pr.anna.89@gmail.com">
-									<input type="hidden" name="form_subject" value="Form Subject">
-									<!-- END Hidden Required Fields -->
-							
-							 <input type="text" name="Name" required placeholder="Your name">
-							<input type="mail" name="Mail" required placeholder="Your email">
-							<input type="text" name="Order" required placeholder="Your order or question">
-							<input type="submit" value="Send">
-						</form>
-					</div>
-				</div>
-			</section>
+                    <p>
+                      Today I can offer individual lessons in graphics, drawing,
+                      painting, I can share all my experience and decorative
+                      skills. Email me to learn more about lessons.
+                    </p>
+                  </div>
+                </div>
+                <div class="master__class__photo"></div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-		</main>
+        <section class="feedback" id="form__feedback">
+          <div class="conteiner">
+            <div class="feedback__picture__box">
+              <h2 class="section__title">Email me here</h2>
+              <div class="feedback__text">
+                Submit your application and I&#96;ll contact you
+              </div>
+              <form
+                action="#"
+                class="form"
+                method="POST"
+                enctype="multipart/form-data"
+              >
+                <input
+                  type="text"
+                  name="Name"
+                  class="input input-name"
+                  data-validate-field="name"
+                  required
+                  placeholder="Your name"
+                />
+                <input
+                  type="email"
+                  name="Mail"
+                  class="input input-mail"
+                  data-validate-field="email"
+                  required
+                  placeholder="Your email"
+                />
+                <textarea
+                  class="textarea"
+                  name="Message"
+                  cols="30"
+                  rows="3"
+                  placeholder="Your order or question"
+                ></textarea>
 
-		<footer class="footer">
-			<div class="conteiner">
-				<div class="footer__box">
-					<div class="footer_line"></div>
-					<div class="footer__copyright">&copy 2023 Juliia Ustymenko
-						<div class="footer__icons">
-							<div class="icon__instagram">
-								<a href="https://www.instagram.com/ustymenkoyuliia.art_yu/">
-									<img src="images/instagram2.svg" alt="instagram">
-								</a>
-							</div>
-							<div class="icon__facebook">
-								<a href="https://www.facebook.com/ustik.sunny">
-									<img src="images/facebook2.svg" alt="facebook">
-								</a>
-							</div>
-						</div>
-					</div>
+                <button class="button">Send</button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
 
-				</div>
-			</div>
-		</footer> 
-
-		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-		<script src="script.js"></script>
-	
-</body>
-
+      <footer class="footer">
+        <div class="footer__box">
+          <div class="footer_line"></div>
+          <div class="footer__copyright">
+            &copy 2023 Juliia Ustymenko
+            <div class="footer__icons">
+              <div class="icon__instagram">
+                <a href="https://www.instagram.com/ustymenkoyuliia.art_yu/">
+                  <img src="images/instagram2.svg" alt="instagram" />
+                </a>
+              </div>
+              <div class="icon__facebook">
+                <a href="https://www.facebook.com/ustik.sunny">
+                  <img src="images/facebook2.svg" alt="facebook" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
 </html>
