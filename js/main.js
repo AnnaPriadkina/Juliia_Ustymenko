@@ -11,7 +11,9 @@ sliders.forEach((carousel) => {
     isDragging = false,
     prevPageX,
     prevScrollLeft,
-    positionDiff;
+    positionDiff,
+    startX,
+    startY;
 
   const showHideIcons = () => {
     let containerWidth = carousel.clientWidth;
@@ -21,14 +23,42 @@ sliders.forEach((carousel) => {
       carousel.scrollLeft >= scrollWidth ? "none" : "block";
   };
 
-  arrowIcons.forEach((icon) => {
-    icon.addEventListener("click", () => {
-      let firstImgWidth = parseFloat(getComputedStyle(firstImg).width) + 14;
-      carousel.scrollLeft +=
-        icon.id === "left" ? -firstImgWidth : firstImgWidth;
-      setTimeout(() => showHideIcons(), 60);
-    });
+  // Touch swipe gestures
+  carousel.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].pageX;
+    startY = e.touches[0].pageY;
   });
+
+  carousel.addEventListener("touchmove", (e) => {
+    if (!startX || !startY) return;
+    let endX = e.touches[0].pageX;
+    let endY = e.touches[0].pageY;
+    let diffX = startX - endX;
+    let diffY = startY - endY;
+
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      e.preventDefault();
+      carousel.scrollLeft += diffX;
+      showHideIcons();
+    }
+
+    startX = null;
+    startY = null;
+  });
+
+  // Centered scroll on click
+  carousel.addEventListener("click", (e) => {
+    if (e.target.tagName === "IMG") {
+      const clickedImageIndex = Array.from(carousel.children).indexOf(e.target);
+      const imageWidth = firstImg.clientWidth + 14;
+      carousel.scrollLeft =
+        clickedImageIndex * imageWidth -
+        (carousel.clientWidth - imageWidth) / 2;
+      showHideIcons();
+    }
+  });
+
+  // Drag and auto slide logic (remaining part of your code)...
 
   const autoSlide = () => {
     if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth)
@@ -69,6 +99,16 @@ sliders.forEach((carousel) => {
     isDragging = false;
     autoSlide();
   };
+
+  arrowIcons[0].addEventListener("click", () => {
+    carousel.scrollLeft -= firstImg.clientWidth + 14;
+    showHideIcons();
+  });
+
+  arrowIcons[1].addEventListener("click", () => {
+    carousel.scrollLeft += firstImg.clientWidth + 14;
+    showHideIcons();
+  });
 
   carousel.addEventListener("mousedown", dragStart);
   carousel.addEventListener("touchstart", dragStart);
