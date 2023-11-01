@@ -18,6 +18,9 @@ sliders.forEach((carousel) => {
   const showHideIcons = () => {
     let containerWidth = carousel.clientWidth;
     let scrollWidth = carousel.scrollWidth - containerWidth;
+    // Calculate threshold based on image width
+    let imageWidth = firstImg.clientWidth + 14;
+    let threshold = imageWidth;
     arrowIcons[0].style.display = carousel.scrollLeft === 0 ? "none" : "block";
     arrowIcons[1].style.display =
       carousel.scrollLeft >= scrollWidth ? "none" : "block";
@@ -58,21 +61,38 @@ sliders.forEach((carousel) => {
     }
   });
 
-  // Drag and auto slide logic (remaining part of your code)...
-
+  // Drag and auto slide logic...
   const autoSlide = () => {
     if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth)
       return;
-    positionDiff = Math.abs(positionDiff);
-    let firstImgWidth = parseFloat(getComputedStyle(firstImg).width) + 14;
-    let valDifference = firstImgWidth - positionDiff / 2;
-    if (carousel.scrollLeft > prevScrollLeft) {
-      carousel.scrollLeft +=
-        positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
-    } else {
-      carousel.scrollLeft -=
-        positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
-    }
+
+    // Calculate the width of the first image including margins and paddings
+    let firstImage = carousel.querySelector("img");
+    let firstImageWidth = firstImage.clientWidth + 14; // Including margins and paddings
+
+    // Calculate the current index of the centered image
+    let currentIndex = Math.round(
+      (carousel.scrollLeft + carousel.clientWidth / 2) / firstImageWidth
+    );
+
+    // Calculate the target index based on the scroll direction
+    let targetIndex = Math.floor(
+      (carousel.scrollLeft + carousel.clientWidth / 2) / firstImageWidth
+    );
+
+    // Calculate the target scroll position to center the current image
+    let targetScrollLeft =
+      targetIndex * firstImageWidth -
+      (carousel.clientWidth - firstImageWidth) / 2;
+
+    // Animate scrolling to the target position (optional, can be removed if not needed)
+    const scrollOptions = {
+      left: targetScrollLeft,
+      behavior: "smooth", // Add smooth scrolling behavior if desired
+    };
+    carousel.scrollTo(scrollOptions);
+
+    // Update arrow visibility after scrolling
     showHideIcons();
   };
 
@@ -103,10 +123,26 @@ sliders.forEach((carousel) => {
   arrowIcons[0].addEventListener("click", () => {
     carousel.scrollLeft -= firstImg.clientWidth + 14;
     showHideIcons();
+    // Check if at the start, hide the left arrow
+    if (carousel.scrollLeft === 0) {
+      arrowIcons[0].style.display = "none";
+    }
   });
 
   arrowIcons[1].addEventListener("click", () => {
     carousel.scrollLeft += firstImg.clientWidth + 14;
+    showHideIcons();
+    // Check if at the end, hide the right arrow
+    let containerWidth = carousel.clientWidth;
+    let scrollWidth = carousel.scrollWidth - containerWidth;
+    let imageWidth = firstImg.clientWidth + 14;
+    let threshold = imageWidth;
+    if (carousel.scrollLeft >= scrollWidth - threshold) {
+      arrowIcons[1].style.display = "none";
+    }
+  });
+
+  carousel.addEventListener("scroll", () => {
     showHideIcons();
   });
 
