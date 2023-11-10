@@ -281,6 +281,7 @@ p {
   overflow: hidden;
   white-space: nowrap;
   scroll-behavior: smooth;
+  transition: 0.3s ease-in-out;
 }
 
 .galery__slider.dragging,
@@ -404,10 +405,10 @@ p {
 .master__class__text {
   width: 380px;
   height: 400px;
-  display: flex;
+  /* display: flex;
   justify-content: space-around;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
   margin: 0 40px;
 }
 
