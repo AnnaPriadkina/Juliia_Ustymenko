@@ -18,12 +18,16 @@ sliders.forEach((carousel) => {
   const showHideIcons = () => {
     let containerWidth = carousel.clientWidth;
     let scrollWidth = carousel.scrollWidth - containerWidth;
+
     // Calculate threshold based on image width
-    let imageWidth = firstImg.clientWidth + 14;
-    let threshold = imageWidth;
+    let imageWidth = carousel.querySelector("img").clientWidth + 14;
+
+    // Show/hide left arrow
     arrowIcons[0].style.display = carousel.scrollLeft === 0 ? "none" : "block";
+
+    // Show/hide right arrow
     arrowIcons[1].style.display =
-      carousel.scrollLeft >= scrollWidth ? "none" : "block";
+      carousel.scrollLeft >= scrollWidth - imageWidth ? "none" : "block";
   };
 
   // Touch swipe gestures
@@ -63,34 +67,33 @@ sliders.forEach((carousel) => {
 
   // Drag and auto slide logic...
   const autoSlide = () => {
-    if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth)
-      return;
-
     // Calculate the width of the first image including margins and paddings
-    let firstImage = carousel.querySelector("img");
-    let firstImageWidth = firstImage.clientWidth + 14; // Including margins and paddings
+    const firstImage = carousel.querySelector("img");
+    const firstImageWidth = firstImage.clientWidth + 14; // Including margins and paddings
 
     // Calculate the current index of the centered image
-    let currentIndex = Math.round(
-      (carousel.scrollLeft + carousel.clientWidth / 2) / firstImageWidth
-    );
-
-    // Calculate the target index based on the scroll direction
-    let targetIndex = Math.floor(
+    const currentIndex = Math.round(
       (carousel.scrollLeft + carousel.clientWidth / 2) / firstImageWidth
     );
 
     // Calculate the target scroll position to center the current image
-    let targetScrollLeft =
-      targetIndex * firstImageWidth -
+    const targetScrollLeft =
+      currentIndex * firstImageWidth -
       (carousel.clientWidth - firstImageWidth) / 2;
 
-    // Animate scrolling to the target position (optional, can be removed if not needed)
-    const scrollOptions = {
-      left: targetScrollLeft,
-      behavior: "smooth", // Add smooth scrolling behavior if desired
-    };
-    carousel.scrollTo(scrollOptions);
+    // Limit the target scroll position to prevent scrolling out of bounds
+    const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+    const minScrollLeft = 0;
+    const clampedTargetScrollLeft = Math.max(
+      minScrollLeft,
+      Math.min(targetScrollLeft, maxScrollLeft)
+    );
+
+    // Animate scrolling to the target position
+    carousel.scrollTo({
+      left: clampedTargetScrollLeft,
+      behavior: "smooth",
+    });
 
     // Update arrow visibility after scrolling
     showHideIcons();
@@ -108,16 +111,45 @@ sliders.forEach((carousel) => {
     isDragging = true;
     carousel.classList.add("dragging");
     positionDiff = (e.pageX || e.touches[0].pageX) - prevPageX;
-    carousel.scrollLeft = prevScrollLeft - positionDiff;
+
+    // Make dragging easier for both directions
+    const sensitivity = 1.5; // Adjust this value as needed
+    carousel.scrollLeft = prevScrollLeft - positionDiff * sensitivity;
+
     showHideIcons();
   };
 
   const dragStop = () => {
     isDragStart = false;
     carousel.classList.remove("dragging");
+
     if (!isDragging) return;
+
     isDragging = false;
-    autoSlide();
+
+    // Calculate the width of the first image including margins and paddings
+    const firstImage = carousel.querySelector("img");
+    const firstImageWidth = firstImage.clientWidth + 14; // Including margins and paddings
+
+    // Calculate the current index of the centered image
+    const currentIndex = Math.round(
+      (carousel.scrollLeft + carousel.clientWidth / 2) / firstImageWidth
+    );
+
+    // Calculate the target scroll position to center the current image
+    const targetScrollLeft =
+      currentIndex * firstImageWidth -
+      (carousel.clientWidth - firstImageWidth) / 2;
+
+    // Limit the target scroll position to prevent scrolling out of bounds
+    const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+    carousel.scrollLeft = Math.min(
+      maxScrollLeft,
+      Math.max(0, targetScrollLeft)
+    );
+
+    // Update arrow visibility after scrolling
+    showHideIcons();
   };
 
   arrowIcons[0].addEventListener("click", () => {
@@ -142,8 +174,18 @@ sliders.forEach((carousel) => {
     }
   });
 
+  let scrollingTimeout;
+
   carousel.addEventListener("scroll", () => {
     showHideIcons();
+
+    if (scrollingTimeout) {
+      clearTimeout(scrollingTimeout);
+    }
+
+    scrollingTimeout = setTimeout(() => {
+      autoSlide();
+    }, 100); // Adjust the timeout value as needed
   });
 
   carousel.addEventListener("mousedown", dragStart);
