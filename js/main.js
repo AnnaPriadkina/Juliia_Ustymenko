@@ -9,82 +9,131 @@ document.addEventListener("DOMContentLoaded", function () {
       .closest(".slider__box")
       .querySelectorAll(".wrapper i");
 
+    let isDragStart = false,
+      isDragging = false,
+      prevPageX,
+      prevScrollLeft,
+      positionDiff;
+
     const showHideIcons = () => {
+      const totalImageWidth = firstImg.clientWidth * carousel.childElementCount;
       const containerWidth = carousel.clientWidth;
-      const imageWidth = firstImg.clientWidth + 14;
+      const scrollableWidth = totalImageWidth - containerWidth;
 
-      // Calculate the total width of all images in the gallery
-      const totalImagesWidth = carousel.scrollWidth;
-
-      // Check if at the start, hide the left arrow
+      // showing and hiding prev/next icon according to carousel scroll left value
       arrowIcons[0].style.display =
         carousel.scrollLeft === 0 ? "none" : "block";
-
-      // Check if at the end, hide the right arrow
       arrowIcons[1].style.display =
-        carousel.scrollLeft >= totalImagesWidth - containerWidth - 1
-          ? "none"
-          : "block";
+        carousel.scrollLeft >= scrollableWidth ? "none" : "block";
     };
+
+    arrowIcons.forEach((icon) => {
+      icon.addEventListener("click", () => {
+        let firstImgWidth = firstImg.clientWidth + 14; // getting first img width & adding 14 margin value
+        let direction = icon.classList.contains("fa-angle-left") ? -1 : 1;
+
+        // if clicked icon is left, reduce width value from the carousel scroll left else add to it
+        carousel.scrollLeft += direction * firstImgWidth;
+        setTimeout(() => showHideIcons(), 60); // calling showHideIcons after 60ms
+      });
+    });
+
+    // const autoSlide = () => {
+    //   // if there is no image left to scroll then return from here
+    //   if (
+    //     carousel.scrollLeft - (carousel.scrollWidth - carousel.clientWidth) >
+    //       -1 ||
+    //     carousel.scrollLeft <= 0
+    //   )
+    //     return;
+
+    //   positionDiff = Math.abs(positionDiff); // making positionDiff value positive
+    //   let firstImgWidth = firstImg.clientWidth + 14;
+    //   // getting difference value that needs to add or reduce from carousel left to take middle img center
+    //   let valDifference = firstImgWidth - positionDiff;
+
+    //   if (carousel.scrollLeft > prevScrollLeft) {
+    //     // if the user is scrolling to the right
+    //     return (carousel.scrollLeft +=
+    //       positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff);
+    //   }
+    //   // if the user is scrolling to the left
+    //   carousel.scrollLeft -=
+    //     positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
+    // };
 
     const autoSlide = () => {
-      const container = carousel.parentElement;
-      const containerWidth = container.clientWidth;
-      const imageWidth = firstImg.clientWidth + 14;
-      const currentIndex = Math.round(
-        (carousel.scrollLeft + containerWidth / 2) / imageWidth
-      );
+      // if there is no image left to scroll then return from here
+      if (
+        carousel.scrollLeft - (carousel.scrollWidth - carousel.clientWidth) >
+          -1 ||
+        carousel.scrollLeft <= 0
+      )
+        return;
 
-      const targetScrollLeft =
-        currentIndex * imageWidth - (containerWidth - imageWidth) / 2;
+      positionDiff = Math.abs(positionDiff); // making positionDiff value positive
 
-      const maxScrollLeft = carousel.scrollWidth - containerWidth;
-      const clampedTargetScrollLeft = Math.max(
-        0,
-        Math.min(targetScrollLeft, maxScrollLeft)
-      );
+      // Calculate the center of the visible area
+      const center = carousel.scrollLeft + carousel.clientWidth / 2;
 
-      carousel.scrollTo({
-        left: clampedTargetScrollLeft,
-        behavior: "smooth",
+      // Find the nearest image to the center
+      const images = carousel.querySelectorAll("img");
+      let closestImage;
+      let minDistance = Number.MAX_SAFE_INTEGER;
+
+      images.forEach((image) => {
+        const imageCenter = image.offsetLeft + image.clientWidth / 2;
+        const distance = Math.abs(center - imageCenter);
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestImage = image;
+        }
       });
 
-      // Update arrow visibility after scrolling
+      // Scroll to the center of the closest image
+      const targetScrollLeft =
+        closestImage.offsetLeft +
+        closestImage.clientWidth / 2 -
+        carousel.clientWidth / 2;
+
+      carousel.scrollLeft = targetScrollLeft;
+    };
+
+    const dragStart = (e) => {
+      // updating global variables value on mouse down event
+      isDragStart = true;
+      prevPageX = e.pageX || e.touches[0].pageX;
+      prevScrollLeft = carousel.scrollLeft;
+    };
+
+    const dragging = (e) => {
+      // scrolling images/carousel to the left according to the mouse pointer
+      if (!isDragStart) return;
+      e.preventDefault();
+      isDragging = true;
+      carousel.classList.add("dragging");
+      positionDiff = (e.pageX || e.touches[0].pageX) - prevPageX;
+      carousel.scrollLeft = prevScrollLeft - positionDiff;
       showHideIcons();
     };
 
-    arrowIcons[0].addEventListener("click", () => {
-      carousel.scrollLeft -= firstImg.clientWidth + 14;
-      showHideIcons();
-      if (carousel.scrollLeft === 0) {
-        arrowIcons[0].style.display = "none";
-      }
-    });
+    const dragStop = () => {
+      isDragStart = false;
+      carousel.classList.remove("dragging");
 
-    arrowIcons[1].addEventListener("click", () => {
-      carousel.scrollLeft += firstImg.clientWidth + 14;
-      showHideIcons();
-      const containerWidth = carousel.clientWidth;
-      const scrollWidth = carousel.scrollWidth - containerWidth;
-      const imageWidth = firstImg.clientWidth + 14;
-      const threshold = imageWidth;
-      if (carousel.scrollLeft >= scrollWidth - threshold) {
-        arrowIcons[1].style.display = "none";
-      }
-    });
+      if (!isDragging) return;
+      isDragging = false;
+      autoSlide();
+    };
 
-    let scrollingTimeout;
+    carousel.addEventListener("mousedown", dragStart);
+    carousel.addEventListener("touchstart", dragStart);
 
-    carousel.addEventListener("scroll", () => {
-      showHideIcons();
+    document.addEventListener("mousemove", dragging);
+    carousel.addEventListener("touchmove", dragging);
 
-      if (scrollingTimeout) {
-        clearTimeout(scrollingTimeout);
-      }
-
-      scrollingTimeout = setTimeout(() => {
-        autoSlide();
-      }, 100); // Adjust the timeout value as needed
-    });
+    document.addEventListener("mouseup", dragStop);
+    carousel.addEventListener("touchend", dragStop);
   });
 });
