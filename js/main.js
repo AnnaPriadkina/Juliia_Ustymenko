@@ -38,30 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // const autoSlide = () => {
-    //   // if there is no image left to scroll then return from here
-    //   if (
-    //     carousel.scrollLeft - (carousel.scrollWidth - carousel.clientWidth) >
-    //       -1 ||
-    //     carousel.scrollLeft <= 0
-    //   )
-    //     return;
-
-    //   positionDiff = Math.abs(positionDiff); // making positionDiff value positive
-    //   let firstImgWidth = firstImg.clientWidth + 14;
-    //   // getting difference value that needs to add or reduce from carousel left to take middle img center
-    //   let valDifference = firstImgWidth - positionDiff;
-
-    //   if (carousel.scrollLeft > prevScrollLeft) {
-    //     // if the user is scrolling to the right
-    //     return (carousel.scrollLeft +=
-    //       positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff);
-    //   }
-    //   // if the user is scrolling to the left
-    //   carousel.scrollLeft -=
-    //     positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
-    // };
-
     const autoSlide = () => {
       // if there is no image left to scroll then return from here
       if (
@@ -97,7 +73,19 @@ document.addEventListener("DOMContentLoaded", function () {
         closestImage.clientWidth / 2 -
         carousel.clientWidth / 2;
 
-      carousel.scrollLeft = targetScrollLeft;
+      const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+      const clampedTargetScrollLeft = Math.max(
+        0,
+        Math.min(targetScrollLeft, maxScrollLeft)
+      );
+
+      carousel.scrollTo({
+        left: clampedTargetScrollLeft,
+        behavior: "smooth",
+      });
+
+      // Update arrow visibility after scrolling
+      showHideIcons();
     };
 
     const dragStart = (e) => {
