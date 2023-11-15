@@ -323,6 +323,8 @@ p {
 .slider__box {
   padding: 0 10px;
   display: flex;
+  font-size: 0;
+  line-height: 0;
   align-items: center;
   justify-content: center;
   max-width: 1200px;
